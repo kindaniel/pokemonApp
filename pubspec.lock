@@ -317,7 +317,7 @@ packages:
     description:
       path: "."
       ref: main
-      resolved-ref: f384a0438c83dc406ca4403081326e566f82a00d
+      resolved-ref: d9b174d37b5a737d543de4ab867e696ea2bdc775
       url: "https://github.com/kindaniel/pokeds.git"
     source: git
     version: "1.0.0+1"
