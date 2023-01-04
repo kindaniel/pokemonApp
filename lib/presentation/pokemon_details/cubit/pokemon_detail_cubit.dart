@@ -4,11 +4,11 @@ import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart
 
 part 'pokemon_detail_state.dart';
 
-class PokemonDetailCubit extends Cubit<PokemonDetailState> {
-  PokemonDetailCubit({required this.getPokemonDetailUseCase})
+class PokemonDetailsCubit extends Cubit<PokemonDetailState> {
+  PokemonDetailsCubit({required this.getPokemonDetailUseCase})
       : super(PokemonDetailInitial());
 
-  final GetPokemonDetailUseCase getPokemonDetailUseCase;
+  final GetPokemonDetailsUseCase getPokemonDetailUseCase;
 
   void getPokemonDetails({required String pokemonId}) async {
     emit(PokemonDetailLoading());

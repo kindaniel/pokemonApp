@@ -50,7 +50,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
       {required String pokemonId}) async {
     try {
       final response =
-          await dio.get(' https://pokeapi.co/api/v2/ability/$pokemonId/');
+          await dio.get('https://pokeapi.co/api/v2/ability/$pokemonId/');
 
       if (response.statusCode == 200) {
         final pokemonAbilities = PokemonAbilities.fromJson(response.data);

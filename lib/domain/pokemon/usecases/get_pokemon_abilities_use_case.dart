@@ -1,12 +1,12 @@
 import 'package:pokemon/data/pokemon/entities/pokemon_abilities.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_repository.dart';
 
-abstract class GetPokemonAbilities {
+abstract class GetPokemonAbilitiesUseCase {
   Future<PokemonAbilities?> call({required String pokemonId});
 }
 
-class GetPokemonAbilitiesImp implements GetPokemonAbilities {
-  GetPokemonAbilitiesImp({required this.pokemonRepository});
+class GetPokemonAbilitiesUseCaseImp implements GetPokemonAbilitiesUseCase {
+  GetPokemonAbilitiesUseCaseImp({required this.pokemonRepository});
 
   final PokemonRepository pokemonRepository;
 
