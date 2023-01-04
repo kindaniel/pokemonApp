@@ -17,33 +17,32 @@ class PokemonApp extends StatelessWidget {
     return ScreenUtilInit(
       designSize: const Size(393, 852),
       builder: (_, child) => MaterialApp(
-          debugShowCheckedModeBanner: false,
-          title: 'Pokemon APP',
-          theme: ThemeData(
-            backgroundColor: Colors.white,
-            iconTheme: const IconThemeData(
-              color: Colors.grey,
-            ),
-            primarySwatch: Colors.red,
-            textTheme: GoogleFonts.poppinsTextTheme(
-              Theme.of(context).textTheme,
-            ),
+        debugShowCheckedModeBanner: false,
+        title: 'Pokemon APP',
+        theme: ThemeData(
+          backgroundColor: Colors.white,
+          iconTheme: const IconThemeData(
+            color: Colors.grey,
           ),
-          builder: (context, widget) {
-            return MediaQuery(
-              ///Setting font does not change with system font size
-              data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
-              child: widget!,
-            );
-          },
-          routes: {
-            "/": (context) => const SplashPage(),
-            "/pokemon-list": (context) => const PokemonListPage(),
-            "/pokemon-detail-page": (context) => PokemonDetailPage(
-                  pokemon:
-                      ModalRoute.of(context)!.settings.arguments as Pokemon,
-                ),
-          }),
+          primarySwatch: Colors.red,
+          textTheme: GoogleFonts.poppinsTextTheme(
+            Theme.of(context).textTheme,
+          ),
+        ),
+        builder: (context, widget) {
+          return MediaQuery(
+            data: MediaQuery.of(context).copyWith(textScaleFactor: 1.0),
+            child: widget!,
+          );
+        },
+        routes: {
+          "/": (context) => const SplashPage(),
+          "/pokemon-list": (context) => const PokemonListPage(),
+          "/pokemon-detail-page": (context) => PokemonDetailPage(
+                pokemon: ModalRoute.of(context)!.settings.arguments as Pokemon,
+              ),
+        },
+      ),
     );
   }
 }

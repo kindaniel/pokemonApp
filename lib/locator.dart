@@ -1,6 +1,8 @@
 import 'package:get_it/get_it.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_repository.dart';
+import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemons_use_case.dart';
+import 'package:pokemon/presentation/pokemon_detail/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 
 final locator = GetIt.instance;
@@ -14,9 +16,21 @@ void registerDependencies() {
     ),
   );
 
+  locator.registerFactory<GetPokemonDetailUseCase>(
+    () => GetPokemonDetailUseCaseImp(
+      pokemonRepository: locator.get<PokemonRepository>(),
+    ),
+  );
+
   locator.registerFactory<PokemonListCubit>(
     () => PokemonListCubit(
       getPokemonsUseCase: locator.get<GetPokemonsUseCase>(),
+    ),
+  );
+
+  locator.registerFactory<PokemonDetailCubit>(
+    () => PokemonDetailCubit(
+      getPokemonDetailUseCase: locator.get<GetPokemonDetailUseCase>(),
     ),
   );
 }
