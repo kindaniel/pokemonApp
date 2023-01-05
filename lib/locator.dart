@@ -1,5 +1,5 @@
 import 'package:get_it/get_it.dart';
-import 'package:pokemon/data/pokemon/repositories/pokemon_repository.dart';
+import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_abilities_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemons_use_case.dart';
@@ -11,23 +11,24 @@ import 'presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 final locator = GetIt.instance;
 
 void registerDependencies() {
-  locator.registerFactory<PokemonRepository>(() => PokemonRepositoryImpl());
+  locator
+      .registerFactory<PokemonRemoteRepository>(() => PokemonRepositoryImpl());
 
   locator.registerFactory<GetPokemonsUseCase>(
     () => GetPokemonsUseCaseImp(
-      pokemonRepository: locator.get<PokemonRepository>(),
+      pokemonRepository: locator.get<PokemonRemoteRepository>(),
     ),
   );
 
   locator.registerFactory<GetPokemonDetailsUseCase>(
     () => GetPokemonDetailsUseCaseImp(
-      pokemonRepository: locator.get<PokemonRepository>(),
+      pokemonRepository: locator.get<PokemonRemoteRepository>(),
     ),
   );
 
   locator.registerFactory<GetPokemonAbilitiesUseCase>(
     () => GetPokemonAbilitiesUseCaseImp(
-      pokemonRepository: locator.get<PokemonRepository>(),
+      pokemonRepository: locator.get<PokemonRemoteRepository>(),
     ),
   );
 
@@ -39,7 +40,7 @@ void registerDependencies() {
 
   locator.registerFactory<PokemonDetailsCubit>(
     () => PokemonDetailsCubit(
-      getPokemonDetailUseCase: locator.get<GetPokemonDetailsUseCase>(),
+      getPokemonDetailsUseCase: locator.get<GetPokemonDetailsUseCase>(),
     ),
   );
 

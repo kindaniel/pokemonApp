@@ -98,9 +98,9 @@ class PokemonDetailsPage extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Column(
                       children: [
-                        BlocBuilder<PokemonDetailsCubit, PokemonDetailState>(
+                        BlocBuilder<PokemonDetailsCubit, PokemonDetailsState>(
                           builder: (context, state) {
-                            if (state is PokemonDetailSuccess) {
+                            if (state is PokemonDetailsSuccess) {
                               return Container(
                                 padding: EdgeInsets.only(top: 56.h),
                                 width: double.maxFinite,
@@ -342,14 +342,6 @@ class PokemonDetailsPage extends StatelessWidget {
                                         ),
                                         onRatingUpdate: (rating) {},
                                       ),
-                                    ),
-                                  ),
-                                  Align(
-                                    alignment: Alignment.centerLeft,
-                                    child: Padding(
-                                      padding: EdgeInsets.symmetric(
-                                          horizontal: 20.w),
-                                      child: TextFormField(),
                                     ),
                                   ),
                                 ],

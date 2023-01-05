@@ -4,13 +4,13 @@ import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
 import 'package:dio/dio.dart';
 import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
-abstract class PokemonRepository {
+abstract class PokemonRemoteRepository {
   Future<PokemonList?> getPokemons();
   Future<PokemonDetails?> getPokemonDetails({required String pokemonId});
   Future<PokemonAbilities?> getPokemonAbilities({required String pokemonId});
 }
 
-class PokemonRepositoryImpl implements PokemonRepository {
+class PokemonRepositoryImpl implements PokemonRemoteRepository {
   var dio = Dio();
 
   @override

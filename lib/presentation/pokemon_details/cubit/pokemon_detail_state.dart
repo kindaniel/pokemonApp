@@ -1,15 +1,15 @@
 part of 'pokemon_detail_cubit.dart';
 
-abstract class PokemonDetailState {}
+abstract class PokemonDetailsState {}
 
-class PokemonDetailInitial extends PokemonDetailState {}
+class PokemonDetailsInitial extends PokemonDetailsState {}
 
-class PokemonDetailLoading extends PokemonDetailState {}
+class PokemonDetailsLoading extends PokemonDetailsState {}
 
-class PokemonDetailSuccess extends PokemonDetailState {
+class PokemonDetailsSuccess extends PokemonDetailsState {
   final PokemonDetails pokemonDetails;
 
-  PokemonDetailSuccess({required this.pokemonDetails});
+  PokemonDetailsSuccess({required this.pokemonDetails});
 }
 
-class PokemonDetailError extends PokemonDetailState {}
+class PokemonDetailsError extends PokemonDetailsState {}
