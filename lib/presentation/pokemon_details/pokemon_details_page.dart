@@ -344,6 +344,14 @@ class PokemonDetailsPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20.w),
+                                      child: TextFormField(),
+                                    ),
+                                  ),
                                 ],
                               );
                             }

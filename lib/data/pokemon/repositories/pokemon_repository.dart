@@ -17,7 +17,7 @@ class PokemonRepositoryImpl implements PokemonRepository {
   Future<PokemonList?> getPokemons() async {
     try {
       final response = await dio
-          .get('https://pokeapi.co/api/v2/pokemon/?limit=15&offset=10');
+          .get('https://pokeapi.co/api/v2/pokemon/?limit=200&offset=10');
 
       if (response.statusCode == 200) {
         final pokemonList = PokemonList.fromJson(response.data);
