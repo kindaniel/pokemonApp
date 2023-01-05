@@ -12,6 +12,7 @@ class PokemonAbilitiesCubit extends Cubit<PokemonAbilitiesState> {
 
   void getPokemonAbilities({required String pokemonId}) async {
     emit(PokemonAbilitiesLoading());
+    await Future.delayed(const Duration(seconds: 1));
 
     final pokemonAbilities =
         await getPokemonAbilitiesUseCase(pokemonId: pokemonId);

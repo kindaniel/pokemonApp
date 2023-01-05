@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poke_design_system/theme/pokeds_colors.dart';
@@ -8,6 +9,7 @@ import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/base_stats_widget.dart';
+import 'package:shimmer/shimmer.dart';
 
 class PokemonDetailsPage extends StatelessWidget {
   const PokemonDetailsPage({super.key, required this.pokemon});
@@ -305,15 +307,66 @@ class PokemonDetailsPage extends StatelessWidget {
                                       ),
                                     ),
                                   ),
+                                  SizedBox(
+                                    height: 23.h,
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20.w),
+                                      child: Text(
+                                        'how much you like this pokemon?',
+                                        style: TextStyle(
+                                            fontSize: 10.sp,
+                                            fontWeight: FontWeight.w300,
+                                            color: const Color(0xff000000)
+                                                .withOpacity(0.76)),
+                                      ),
+                                    ),
+                                  ),
+                                  Align(
+                                    alignment: Alignment.centerLeft,
+                                    child: Padding(
+                                      padding: EdgeInsets.symmetric(
+                                          horizontal: 20.w),
+                                      child: RatingBar.builder(
+                                        initialRating: 0,
+                                        minRating: 1,
+                                        direction: Axis.horizontal,
+                                        allowHalfRating: false,
+                                        itemCount: 5,
+                                        itemBuilder: (context, _) => const Icon(
+                                          Icons.star,
+                                          color: Colors.amber,
+                                        ),
+                                        onRatingUpdate: (rating) {},
+                                      ),
+                                    ),
+                                  ),
                                 ],
                               );
                             }
-                            return Container(
-                              height: 100,
-                              width: 100,
-                              color: Colors.red,
+                            return SizedBox(
+                              width: 200.0,
+                              height: 100.0,
+                              child: Shimmer.fromColors(
+                                baseColor: Colors.red,
+                                highlightColor: Colors.yellow,
+                                child: Text(
+                                  'Loading abilities...',
+                                  textAlign: TextAlign.center,
+                                  style: TextStyle(
+                                    fontSize: 14.0.sp,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                              ),
                             );
                           },
+                        ),
+                        SizedBox(
+                          height: 200.h,
                         ),
                       ],
                     ),
