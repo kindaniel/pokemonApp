@@ -21,7 +21,20 @@ void main() {
       setUp: () {
         when(() => getPokemonDetailsUseCase(pokemonId: '25')).thenAnswer(
             (_) async => PokemonDetails(
-                abilities: [],
+                moves: [
+                  Moves(
+                    move: Move(name: 'attack', url: ''),
+                  ),
+                  Moves(
+                    move: Move(name: 'attack', url: ''),
+                  ),
+                ],
+                abilities: [
+                  Abilities(
+                      ability: Ability(name: '', url: ''),
+                      isHidden: false,
+                      slot: 1)
+                ],
                 id: 1,
                 stats: [],
                 types: [],
@@ -65,7 +78,20 @@ void main() {
       setUp: () {
         when(() => getPokemonDetailsUseCase(pokemonId: '25')).thenAnswer(
           (_) async => PokemonDetails(
-              abilities: [], id: 1, stats: [], types: [], weight: 1, height: 1),
+              moves: [
+                Moves(
+                  move: Move(name: 'attack', url: ''),
+                ),
+                Moves(
+                  move: Move(name: 'attack', url: ''),
+                ),
+              ],
+              abilities: [],
+              id: 1,
+              stats: [],
+              types: [],
+              weight: 1,
+              height: 1),
         );
       },
       act: (cubit) => cubit.getPokemonDetails(pokemonId: '25'),

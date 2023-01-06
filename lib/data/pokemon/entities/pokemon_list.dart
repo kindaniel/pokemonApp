@@ -23,6 +23,7 @@ class Pokemon {
   Pokemon({
     required this.name,
     required this.url,
+    required this.id,
   });
   late final String id;
   late final String name;

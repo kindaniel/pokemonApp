@@ -5,15 +5,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poke_design_system/theme/pokeds_colors.dart';
 import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
-import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/base_stats_widget.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PokemonDetailsPage extends StatelessWidget {
-  const PokemonDetailsPage({super.key, required this.pokemon});
+  const PokemonDetailsPage({
+    super.key,
+    required this.pokemon,
+    required this.pokemonAbilitiesCubit,
+    required this.pokemonDetailsCubit,
+  });
 
+  final PokemonAbilitiesCubit pokemonAbilitiesCubit;
+  final PokemonDetailsCubit pokemonDetailsCubit;
   final Pokemon pokemon;
 
   @override
@@ -35,36 +41,32 @@ class PokemonDetailsPage extends StatelessWidget {
                     color: Colors.white)),
             flexibleSpace: FlexibleSpaceBar(
               centerTitle: true,
-              background: Column(
+              background: Stack(
                 children: [
-                  Stack(
-                    children: [
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Padding(
-                          padding: EdgeInsets.only(top: 8.h, right: 41.w),
-                          child: Image.asset(
-                            'assets/images/transparent_pokeball.png',
-                            height: 208.h,
-                            width: 208.w,
-                          ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 8.h, right: 41.w),
+                      child: Image.asset(
+                        'assets/images/transparent_pokeball.png',
+                        height: 208.h,
+                        width: 208.w,
+                      ),
+                    ),
+                  ),
+                  Align(
+                    alignment: Alignment.topRight,
+                    child: Hero(
+                      tag: pokemon.id,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: 55.h, right: 16.w),
+                        child: Image.network(
+                          'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png',
+                          height: 190.h,
+                          width: 180.w,
                         ),
                       ),
-                      Align(
-                        alignment: Alignment.topRight,
-                        child: Hero(
-                          tag: pokemon.id,
-                          child: Padding(
-                            padding: EdgeInsets.only(top: 55.h, right: 16.w),
-                            child: Image.network(
-                              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png',
-                              height: 190.h,
-                              width: 180.w,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
+                    ),
                   ),
                 ],
               ),
@@ -78,11 +80,11 @@ class PokemonDetailsPage extends StatelessWidget {
           child: MultiBlocProvider(
             providers: [
               BlocProvider(
-                create: (context) => locator.get<PokemonDetailsCubit>()
+                create: (context) => pokemonDetailsCubit
                   ..getPokemonDetails(pokemonId: pokemon.id),
               ),
               BlocProvider(
-                create: (context) => locator.get<PokemonAbilitiesCubit>()
+                create: (context) => pokemonAbilitiesCubit
                   ..getPokemonAbilities(pokemonId: pokemon.id),
               ),
             ],

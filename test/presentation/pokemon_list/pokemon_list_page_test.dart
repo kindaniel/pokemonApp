@@ -23,22 +23,30 @@ void main() {
     'Pokemon List page, when loaded with success, should appears a GridView in page ',
     (widgetTester) async {
       whenListen(
-          pokemonListCubit,
-          Stream<PokemonListState>.fromIterable(
-            [],
+        pokemonListCubit,
+        Stream<PokemonListState>.fromIterable(
+          [],
+        ),
+        initialState: PokemonListSuccess(
+          pokemonList: PokemonList(
+            count: 1000,
+            next: '',
+            previous: '',
+            pokemons: [],
           ),
-          initialState: PokemonListSuccess(
-              pokemonList: PokemonList(
-                  count: 1000, next: '', previous: '', pokemons: [])));
+        ),
+      );
 
       await widgetTester.pumpWidget(
         MaterialApp(
           home: Scaffold(
             body: ScreenUtilInit(
-                designSize: const Size(393, 852),
-                // ignore: prefer_const_constructors
-                builder: (BuildContext context, _) =>
-                    PokemonListPage(pokemonListCubit: pokemonListCubit)),
+              designSize: const Size(393, 852),
+              // ignore: prefer_const_constructors
+              builder: (BuildContext context, _) => PokemonListPage(
+                pokemonListCubit: pokemonListCubit,
+              ),
+            ),
           ),
         ),
       );

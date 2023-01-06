@@ -22,7 +22,7 @@ void main() {
             count: 1,
             next: '1',
             previous: '',
-            pokemons: [Pokemon(name: 'Pikachu', url: 'http://www')],
+            pokemons: [Pokemon(id: '25', name: 'Pikachu', url: 'http://www')],
           ),
         );
       },

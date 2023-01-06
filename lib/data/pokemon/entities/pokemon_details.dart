@@ -6,6 +6,7 @@ class PokemonDetails {
     required this.types,
     required this.weight,
     required this.height,
+    required this.moves,
   });
   late final List<Abilities> abilities;
   late final int id;

@@ -4,10 +4,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/locator.dart';
+import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
 import 'package:pokemon/presentation/splash/splash_page.dart';
 
+import 'presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 
 class PokemonApp extends StatelessWidget {
@@ -43,6 +45,8 @@ class PokemonApp extends StatelessWidget {
                 pokemonListCubit: locator.get<PokemonListCubit>(),
               ),
           "/pokemon-detail-page": (context) => PokemonDetailsPage(
+                pokemonAbilitiesCubit: locator.get<PokemonAbilitiesCubit>(),
+                pokemonDetailsCubit: locator.get<PokemonDetailsCubit>(),
                 pokemon: ModalRoute.of(context)!.settings.arguments as Pokemon,
               ),
         },
