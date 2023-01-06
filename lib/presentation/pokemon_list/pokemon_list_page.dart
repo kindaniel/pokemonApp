@@ -4,11 +4,11 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poke_design_system/widgets/poke_app_bar.dart';
 import 'package:poke_design_system/widgets/poke_card.dart';
-import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 
 class PokemonListPage extends StatelessWidget {
-  const PokemonListPage({super.key});
+  final PokemonListCubit pokemonListCubit;
+  const PokemonListPage({super.key, required this.pokemonListCubit});
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class PokemonListPage extends StatelessWidget {
         image: 'assets/images/header_pokeball.png',
       ),
       body: BlocProvider(
-        create: (context) => locator.get<PokemonListCubit>()..getPokemons(),
+        create: (context) => pokemonListCubit..getPokemons(),
         child: BlocBuilder<PokemonListCubit, PokemonListState>(
           builder: (context, state) {
             if (state is PokemonListSuccess) {
