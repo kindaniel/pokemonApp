@@ -29,7 +29,7 @@ void main() {
   );
 
   testWidgets(
-    'Pokemon List page, when loaded with success, should appers details of pokemon ',
+    'Pokemon details page, when loaded with success, should appers details of pokemon ',
     (widgetTester) async {
       whenListen(
         pokemonAbilitiesCubit,
