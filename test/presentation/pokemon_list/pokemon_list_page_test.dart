@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
+import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
 

@@ -1,6 +1,7 @@
-import 'package:pokemon/data/pokemon/entities/pokemon_abilities.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_details.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
+import 'package:pokemon/data/pokemon/mappers/pokemon_mapper.dart';
+import 'package:pokemon/domain/entities/pokemon_abilities.dart';
+import 'package:pokemon/domain/entities/pokemon_details.dart';
+import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:dio/dio.dart';
 import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
@@ -20,7 +21,7 @@ class PokemonRepositoryImpl implements PokemonRemoteRepository {
           .get('https://pokeapi.co/api/v2/pokemon/?limit=200&offset=10');
 
       if (response.statusCode == 200) {
-        final pokemonList = PokemonList.fromJson(response.data);
+        final pokemonList = PokemonMapper.pokemonListFromJson(response.data);
         return pokemonList;
       }
     } catch (error) {

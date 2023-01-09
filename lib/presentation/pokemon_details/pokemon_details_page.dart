@@ -4,7 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:poke_design_system/theme/pokeds_colors.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
+import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/base_stats_widget.dart';

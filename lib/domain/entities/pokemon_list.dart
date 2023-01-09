@@ -9,14 +9,6 @@ class PokemonList {
   late final String next;
   late final String previous;
   late final List<Pokemon> pokemons;
-
-  PokemonList.fromJson(Map<String, dynamic> json) {
-    count = json['count'];
-    next = json['next'];
-    previous = json['previous'];
-    pokemons =
-        List.from(json['results']).map((e) => Pokemon.fromJson(e)).toList();
-  }
 }
 
 class Pokemon {

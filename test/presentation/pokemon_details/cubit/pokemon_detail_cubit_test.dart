@@ -1,7 +1,7 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_details.dart';
+import 'package:pokemon/domain/entities/pokemon_details.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 

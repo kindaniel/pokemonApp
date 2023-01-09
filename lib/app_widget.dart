@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:pokemon/data/pokemon/entities/pokemon_list.dart';
+import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';

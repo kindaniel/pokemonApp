@@ -1,4 +1,4 @@
-import 'package:pokemon/data/pokemon/entities/pokemon_details.dart';
+import 'package:pokemon/domain/entities/pokemon_details.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
 
 abstract class GetPokemonDetailsUseCase {
