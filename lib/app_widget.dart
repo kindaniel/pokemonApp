@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
@@ -41,8 +42,9 @@ class PokemonApp extends StatelessWidget {
         },
         routes: {
           "/": (context) => const SplashPage(),
-          "/pokemon-list": (context) => PokemonListPage(
-                pokemonListCubit: locator.get<PokemonListCubit>(),
+          "/pokemon-list": (context) => BlocProvider(
+                create: (context) => locator.get<PokemonListCubit>(),
+                child: const PokemonListPage(),
               ),
           "/pokemon-detail-page": (context) => PokemonDetailsPage(
                 pokemonAbilitiesCubit: locator.get<PokemonAbilitiesCubit>(),

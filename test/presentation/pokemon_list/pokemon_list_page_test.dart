@@ -1,5 +1,6 @@
 import 'package:bloc_test/bloc_test.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
@@ -44,8 +45,9 @@ void main() {
                 body: ScreenUtilInit(
                   designSize: const Size(393, 852),
                   // ignore: prefer_const_constructors
-                  builder: (BuildContext context, _) => PokemonListPage(
-                    pokemonListCubit: pokemonListCubit,
+                  builder: (BuildContext context, _) => BlocProvider(
+                    create: (context) => pokemonListCubit,
+                    child: const PokemonListPage(),
                   ),
                 ),
               ),
@@ -56,6 +58,7 @@ void main() {
       expect(find.byType(GestureDetector), findsNWidgets(1));
       expect(find.byType(Hero), findsNWidgets(1));
       expect(find.byType(PokeCard), findsNWidgets(1));
+      expect(find.byType(Padding), findsNWidgets(5));
     },
   );
 
@@ -75,8 +78,10 @@ void main() {
             body: ScreenUtilInit(
                 designSize: const Size(393, 852),
                 // ignore: prefer_const_constructors
-                builder: (BuildContext context, _) =>
-                    PokemonListPage(pokemonListCubit: pokemonListCubit)),
+                builder: (BuildContext context, _) => BlocProvider(
+                      create: (context) => pokemonListCubit,
+                      child: const PokemonListPage(),
+                    )),
           ),
         ),
       );

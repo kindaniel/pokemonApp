@@ -6,6 +6,8 @@ class PokemonListInitial extends PokemonListState {}
 
 class PokemonListLoading extends PokemonListState {}
 
+class PokemonListLoadingMore extends PokemonListState {}
+
 class PokemonListSuccess extends PokemonListState {
   final PokemonList pokemonList;
 

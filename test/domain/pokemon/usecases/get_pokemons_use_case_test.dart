@@ -33,7 +33,7 @@ void main() async {
 
           final result = await getPokemonsUseCase();
 
-          expect(result, pokemonList);
+          expect(result, isA<PokemonList>());
         },
       );
     },

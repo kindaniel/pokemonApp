@@ -6,7 +6,7 @@ import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
 abstract class PokemonRemoteRepository {
-  Future<PokemonList?> getPokemons();
+  Future<PokemonList?> getPokemons({PokemonList? currentPokemonList});
   Future<PokemonDetails?> getPokemonDetails({required String pokemonId});
   Future<PokemonAbilities?> getPokemonAbilities({required String pokemonId});
 }
@@ -15,10 +15,13 @@ class PokemonRepositoryImpl implements PokemonRemoteRepository {
   var dio = Dio();
 
   @override
-  Future<PokemonList?> getPokemons() async {
+  Future<PokemonList?> getPokemons({PokemonList? currentPokemonList}) async {
     try {
-      final response = await dio
-          .get('https://pokeapi.co/api/v2/pokemon/?limit=200&offset=10');
+      var url = 'https://pokeapi.co/api/v2/pokemon/?limit=15&offset=10';
+      if (currentPokemonList != null) {
+        url = currentPokemonList.next;
+      }
+      final response = await dio.get(url);
 
       if (response.statusCode == 200) {
         final pokemonList = PokemonMapper.pokemonListFromJson(response.data);

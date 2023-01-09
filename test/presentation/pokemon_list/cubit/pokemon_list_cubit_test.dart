@@ -29,7 +29,6 @@ void main() {
       act: (cubit) => cubit.getPokemons(),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        isA<PokemonListLoading>(),
         isA<PokemonListSuccess>(),
       ],
     );
@@ -47,7 +46,6 @@ void main() {
       act: (cubit) => cubit.getPokemons(),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        isA<PokemonListLoading>(),
         isA<PokemonListError>(),
       ],
     );
@@ -72,7 +70,6 @@ void main() {
       act: (cubit) => cubit.getPokemons(),
       wait: const Duration(milliseconds: 500),
       expect: () => [
-        isA<PokemonListLoading>(),
         isA<PokemonListError>(),
       ],
     );

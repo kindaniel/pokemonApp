@@ -10,12 +10,12 @@ class PokemonListCubit extends Cubit<PokemonListState> {
 
   final GetPokemonsUseCase getPokemonsUseCase;
 
-  void getPokemons() async {
-    emit(PokemonListLoading());
+  void getPokemons({PokemonList? currentPokemonList}) async {
+    final result =
+        await getPokemonsUseCase(currentPokemonList: currentPokemonList);
 
-    final pokemonList = await getPokemonsUseCase();
-    if (pokemonList != null && pokemonList.pokemons.isNotEmpty) {
-      emit(PokemonListSuccess(pokemonList: pokemonList));
+    if (result != null && result.pokemons.isNotEmpty) {
+      emit(PokemonListSuccess(pokemonList: result));
     } else {
       emit(PokemonListError());
     }
