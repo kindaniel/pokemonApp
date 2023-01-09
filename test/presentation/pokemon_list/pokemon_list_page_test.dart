@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
+import 'package:network_image_mock/network_image_mock.dart';
+import 'package:poke_design_system/widgets/poke_card.dart';
 import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
@@ -32,26 +34,28 @@ void main() {
             count: 1000,
             next: '',
             previous: '',
-            pokemons: [],
+            pokemons: [Pokemon(name: 'Pikachu', url: '', id: '25')],
           ),
         ),
       );
-
-      await widgetTester.pumpWidget(
-        MaterialApp(
-          home: Scaffold(
-            body: ScreenUtilInit(
-              designSize: const Size(393, 852),
-              // ignore: prefer_const_constructors
-              builder: (BuildContext context, _) => PokemonListPage(
-                pokemonListCubit: pokemonListCubit,
+      await mockNetworkImagesFor(() => widgetTester.pumpWidget(
+            MaterialApp(
+              home: Scaffold(
+                body: ScreenUtilInit(
+                  designSize: const Size(393, 852),
+                  // ignore: prefer_const_constructors
+                  builder: (BuildContext context, _) => PokemonListPage(
+                    pokemonListCubit: pokemonListCubit,
+                  ),
+                ),
               ),
             ),
-          ),
-        ),
-      );
+          ));
 
       expect(find.byType(GridView), findsNWidgets(1));
+      expect(find.byType(GestureDetector), findsNWidgets(1));
+      expect(find.byType(Hero), findsNWidgets(1));
+      expect(find.byType(PokeCard), findsNWidgets(1));
     },
   );
 

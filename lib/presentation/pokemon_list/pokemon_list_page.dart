@@ -8,7 +8,9 @@ import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart'
 
 class PokemonListPage extends StatelessWidget {
   final PokemonListCubit pokemonListCubit;
-  const PokemonListPage({super.key, required this.pokemonListCubit});
+  PokemonListPage({super.key, required this.pokemonListCubit});
+
+  final scrollController = ScrollController();
 
   @override
   Widget build(BuildContext context) {
@@ -25,35 +27,33 @@ class PokemonListPage extends StatelessWidget {
             if (state is PokemonListSuccess) {
               return Padding(
                 padding: EdgeInsets.all(16.r),
-                child: RefreshIndicator(
-                  onRefresh: () async => pokemonListCubit.getPokemons(),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-                      maxCrossAxisExtent: 130.r,
-                      childAspectRatio: 1.5.r,
-                      crossAxisSpacing: 10.r,
-                      mainAxisSpacing: 10.r,
-                      mainAxisExtent: 150.r,
-                    ),
-                    itemCount: state.pokemonList.pokemons.length,
-                    itemBuilder: (BuildContext ctx, index) {
-                      final pokemon = state.pokemonList.pokemons[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.pushNamed(context, '/pokemon-detail-page',
-                              arguments: state.pokemonList.pokemons[index]);
-                        },
-                        child: Hero(
-                          tag: pokemon.id,
-                          child: PokeCard(
-                            pokemonName: pokemon.name,
-                            pokemonImage:
-                                'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png',
-                          ),
-                        ),
-                      );
-                    },
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: 130.r,
+                    childAspectRatio: 1.5.r,
+                    crossAxisSpacing: 10.r,
+                    mainAxisSpacing: 10.r,
+                    mainAxisExtent: 150.r,
                   ),
+                  controller: scrollController,
+                  itemCount: state.pokemonList.pokemons.length,
+                  itemBuilder: (BuildContext ctx, index) {
+                    final pokemon = state.pokemonList.pokemons[index];
+                    return GestureDetector(
+                      onTap: () {
+                        Navigator.pushNamed(context, '/pokemon-detail-page',
+                            arguments: state.pokemonList.pokemons[index]);
+                      },
+                      child: Hero(
+                        tag: pokemon.id,
+                        child: PokeCard(
+                          pokemonName: pokemon.name,
+                          pokemonImage:
+                              'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${pokemon.id}.png',
+                        ),
+                      ),
+                    );
+                  },
                 ),
               );
             } else {
