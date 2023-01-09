@@ -58,13 +58,6 @@ class Ability {
     name = json['name'];
     url = json['url'];
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['name'] = name;
-    data['url'] = url;
-    return data;
-  }
 }
 
 class Stats {
@@ -82,14 +75,6 @@ class Stats {
     effort = json['effort'];
     stat = Stat.fromJson(json['stat']);
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['base_stat'] = baseStat;
-    data['effort'] = effort;
-    data['stat'] = stat.toJson();
-    return data;
-  }
 }
 
 class Stat {
@@ -103,13 +88,6 @@ class Stat {
   Stat.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['name'] = name;
-    data['url'] = url;
-    return data;
   }
 }
 
@@ -125,13 +103,6 @@ class Types {
     slot = json['slot'];
     type = Type.fromJson(json['type']);
   }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['slot'] = slot;
-    data['type'] = type.toJson();
-    return data;
-  }
 }
 
 class Type {
@@ -145,13 +116,6 @@ class Type {
   Type.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     url = json['url'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final data = <String, dynamic>{};
-    data['name'] = name;
-    data['url'] = url;
-    return data;
   }
 }
 
