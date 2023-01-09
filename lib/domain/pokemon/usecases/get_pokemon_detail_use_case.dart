@@ -1,5 +1,5 @@
-import 'package:pokemon/domain/entities/pokemon_details.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
 
 abstract class GetPokemonDetailsUseCase {
   Future<PokemonDetails?> call({required String pokemonId});

@@ -5,7 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:poke_design_system/widgets/poke_card.dart';
-import 'package:pokemon/domain/entities/pokemon_list.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
 

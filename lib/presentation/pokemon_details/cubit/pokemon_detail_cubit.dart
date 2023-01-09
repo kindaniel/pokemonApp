@@ -1,5 +1,5 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:pokemon/domain/entities/pokemon_details.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 
 part 'pokemon_detail_state.dart';

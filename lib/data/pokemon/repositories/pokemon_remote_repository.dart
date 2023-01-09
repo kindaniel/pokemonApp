@@ -1,8 +1,8 @@
 import 'package:pokemon/data/pokemon/mappers/pokemon_mapper.dart';
-import 'package:pokemon/domain/entities/pokemon_abilities.dart';
-import 'package:pokemon/domain/entities/pokemon_details.dart';
-import 'package:pokemon/domain/entities/pokemon_list.dart';
 import 'package:dio/dio.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_abilities.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
 abstract class PokemonRemoteRepository {

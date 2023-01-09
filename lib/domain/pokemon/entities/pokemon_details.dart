@@ -13,8 +13,20 @@ class PokemonDetails {
   late final List<Stats> stats;
   late final List<Types> types;
   late final List<Moves> moves;
+
   late final int weight;
   late final int height;
+
+  PokemonDetails.fromJson(Map<String, dynamic> json) {
+    abilities =
+        List.from(json['abilities']).map((e) => Abilities.fromJson(e)).toList();
+    id = json['id'];
+    stats = List.from(json['stats']).map((e) => Stats.fromJson(e)).toList();
+    types = List.from(json['types']).map((e) => Types.fromJson(e)).toList();
+    moves = List.from(json['moves']).map((e) => Moves.fromJson(e)).toList();
+    height = json['height'];
+    weight = json['weight'];
+  }
 }
 
 class Abilities {
@@ -26,6 +38,12 @@ class Abilities {
   late final Ability ability;
   late final bool isHidden;
   late final int slot;
+
+  Abilities.fromJson(Map<String, dynamic> json) {
+    ability = Ability.fromJson(json['ability']);
+    isHidden = json['is_hidden'];
+    slot = json['slot'];
+  }
 }
 
 class Ability {

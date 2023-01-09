@@ -3,6 +3,12 @@ class PokemonAbilities {
     required this.effectEntries,
   });
   late final List<EffectEntries> effectEntries;
+
+  PokemonAbilities.fromJson(Map<String, dynamic> json) {
+    effectEntries = List.from(json['effect_entries'])
+        .map((e) => EffectEntries.fromJson(e))
+        .toList();
+  }
 }
 
 class EffectEntries {

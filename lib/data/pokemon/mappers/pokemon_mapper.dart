@@ -1,4 +1,4 @@
-import 'package:pokemon/domain/entities/pokemon_list.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 
 abstract class PokemonMapper {
   // @TODO Todos os mappers devem ficar aqui, e não na entity.
