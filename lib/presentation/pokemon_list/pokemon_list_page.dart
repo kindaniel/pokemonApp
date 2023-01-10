@@ -61,6 +61,7 @@ class _PokemonListPageState extends State<PokemonListPage> {
                 itemBuilder: (BuildContext ctx, index) {
                   final pokemon = state.pokemonList.pokemons[index];
                   return GestureDetector(
+                    key: Key('pokeCard'),
                     onTap: () {
                       Navigator.pushNamed(context, '/pokemon-detail-page',
                           arguments: state.pokemonList.pokemons[index]);

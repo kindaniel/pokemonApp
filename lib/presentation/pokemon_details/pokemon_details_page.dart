@@ -268,6 +268,7 @@ class PokemonDetailsPage extends StatelessWidget {
                     return Column(
                       children: [
                         Text(
+                          key: Key('ability'),
                           'Ability',
                           style: TextStyle(
                             color: PokedsColors.primaryColor,
