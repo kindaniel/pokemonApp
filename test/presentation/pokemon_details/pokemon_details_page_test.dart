@@ -11,6 +11,7 @@ import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_c
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/pokemon_success_widget.dart';
+import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
 
 class MockPokemonDetailsCubit extends MockCubit<PokemonDetailsState>
     implements PokemonDetailsCubit {}
@@ -18,14 +19,19 @@ class MockPokemonDetailsCubit extends MockCubit<PokemonDetailsState>
 class MockPokemonAbilitiesCubit extends MockCubit<PokemonAbilitiesState>
     implements PokemonAbilitiesCubit {}
 
+class MockPokemonRatingCubit extends MockCubit<PokemonRatingState>
+    implements PokemonRatingCubit {}
+
 void main() {
   late PokemonDetailsCubit pokemonDetailsCubit;
   late PokemonAbilitiesCubit pokemonAbilitiesCubit;
+  late PokemonRatingCubit pokemonRatingCubit;
 
   setUp(
     () {
       pokemonDetailsCubit = MockPokemonDetailsCubit();
       pokemonAbilitiesCubit = MockPokemonAbilitiesCubit();
+      pokemonRatingCubit = MockPokemonRatingCubit();
     },
   );
 
@@ -108,6 +114,7 @@ void main() {
                     ),
                     pokemonAbilitiesCubit: pokemonAbilitiesCubit,
                     pokemonDetailsCubit: pokemonDetailsCubit,
+                    pokemonRatingCubit: pokemonRatingCubit,
                   ),
                 ),
               ),
@@ -148,6 +155,7 @@ void main() {
                     ),
                     pokemonAbilitiesCubit: pokemonAbilitiesCubit,
                     pokemonDetailsCubit: pokemonDetailsCubit,
+                    pokemonRatingCubit: pokemonRatingCubit,
                   ),
                 ),
               ),
