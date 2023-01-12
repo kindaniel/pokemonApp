@@ -12,7 +12,6 @@ class PokemonDetailsCubit extends Cubit<PokemonDetailsState> {
 
   void getPokemonDetails({required String pokemonId}) async {
     emit(PokemonDetailsLoading());
-    await Future.delayed(const Duration(seconds: 1));
     final pokemonDetails = await getPokemonDetailsUseCase(pokemonId: pokemonId);
     if (pokemonDetails != null && pokemonDetails.abilities.isNotEmpty) {
       emit(PokemonDetailsSuccess(pokemonDetails: pokemonDetails));

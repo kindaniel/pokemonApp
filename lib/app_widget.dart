@@ -8,6 +8,7 @@ import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
+import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
 import 'package:pokemon/presentation/splash/splash_page.dart';
 
 import 'presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
@@ -49,6 +50,7 @@ class PokemonApp extends StatelessWidget {
           "/pokemon-detail-page": (context) => PokemonDetailsPage(
                 pokemonAbilitiesCubit: locator.get<PokemonAbilitiesCubit>(),
                 pokemonDetailsCubit: locator.get<PokemonDetailsCubit>(),
+                pokemonRatingCubit: locator.get<PokemonRatingCubit>(),
                 pokemon: ModalRoute.of(context)!.settings.arguments as Pokemon,
               ),
         },

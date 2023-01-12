@@ -10,7 +10,7 @@ class SplashPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Timer(
-      const Duration(seconds: 5),
+      const Duration(seconds: 2),
       () => Navigator.pushReplacementNamed(context, '/pokemon-list'),
     );
     return Container(

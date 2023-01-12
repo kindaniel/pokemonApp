@@ -10,7 +10,7 @@ import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
-import 'package:pokemon/presentation/pokemon_details/widgets/base_stats_widget.dart';
+import 'package:pokemon/presentation/pokemon_details/widgets/pokemon_success_widget.dart';
 
 class MockPokemonDetailsCubit extends MockCubit<PokemonDetailsState>
     implements PokemonDetailsCubit {}
@@ -114,10 +114,7 @@ void main() {
             ),
           ));
 
-      expect(find.byType(Scaffold), findsNWidgets(2));
-      expect(find.byType(NestedScrollView), findsNWidgets(1));
-      expect(find.byType(SingleChildScrollView), findsNWidgets(1));
-      expect(find.byType(BaseStatsWidget), findsNWidgets(1));
+      expect(find.byType(PokemonSucessWidget), findsNWidgets(1));
     },
   );
 
