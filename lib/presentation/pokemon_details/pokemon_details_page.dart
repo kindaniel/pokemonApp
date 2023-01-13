@@ -12,7 +12,7 @@ import 'package:pokemon/presentation/pokemon_details/widgets/sliver_app_bar.dart
 import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
 
 class PokemonDetailsPage extends StatelessWidget {
-  const PokemonDetailsPage({
+  PokemonDetailsPage({
     super.key,
     required this.pokemon,
     required this.pokemonAbilitiesCubit,
@@ -24,6 +24,9 @@ class PokemonDetailsPage extends StatelessWidget {
   final PokemonDetailsCubit pokemonDetailsCubit;
   final PokemonRatingCubit pokemonRatingCubit;
   final Pokemon pokemon;
+
+  final TextEditingController commentController =
+      TextEditingController(text: "");
 
   @override
   Widget build(BuildContext context) {
@@ -113,19 +116,45 @@ class PokemonDetailsPage extends StatelessWidget {
                               },
                             ),
                             SizedBox(
-                              height: 50.h,
+                              height: 20.h,
                             ),
                             Text('Comments'),
                             SizedBox(
                               height: 20.h,
                             ),
-                            TextField(
-                              maxLines: 3, //or null
-                              decoration: InputDecoration.collapsed(
-                                  hintText: "Enter your text here"),
+                            TextFormField(
+                              controller: commentController,
+                              validator: (value) {
+                                if (value != null && value.isEmpty) {
+                                  return 'Comment anything';
+                                }
+                                return null;
+                              },
+                              decoration: InputDecoration(
+                                filled: true,
+                                fillColor: const Color(0xffF3F4F5),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(8),
+                                  borderSide: BorderSide.none,
+                                ),
+                                errorMaxLines: 6,
+                                hintText: 'comment',
+                                prefixIcon: Icon(
+                                  Icons.comment,
+                                  size: 15.r,
+                                ),
+                              ),
                             ),
-                            ElevatedButton(
-                                onPressed: null, child: Text('Send comment'))
+                            Padding(
+                              padding: const EdgeInsets.only(top: 10.0),
+                              child: Align(
+                                alignment: Alignment.centerRight,
+                                child: ElevatedButton(
+                                  onPressed: () => null,
+                                  child: Text('Send'),
+                                ),
+                              ),
+                            )
                           ],
                         );
                       }

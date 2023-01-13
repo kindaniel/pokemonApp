@@ -30,7 +30,7 @@ class PokemonApp extends StatelessWidget {
           iconTheme: const IconThemeData(
             color: Colors.grey,
           ),
-          primarySwatch: Colors.red,
+          primarySwatch: Colors.purple,
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           ),
