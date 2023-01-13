@@ -91,23 +91,42 @@ class PokemonDetailsPage extends StatelessWidget {
                   child: BlocBuilder<PokemonRatingCubit, PokemonRatingState>(
                     builder: (context, state) {
                       if (state is PokemonRatingSuccess) {
-                        return RatingBar.builder(
-                          initialRating: state.pokemonRating.rating,
-                          minRating: 1,
-                          direction: Axis.horizontal,
-                          allowHalfRating: false,
-                          itemCount: 5,
-                          itemBuilder: (context, _) => const Icon(
-                            Icons.star,
-                            color: Colors.amber,
-                          ),
-                          onRatingUpdate: (rating) async {
-                            await pokemonRatingCubit.savePokemonRating(
-                              pokemonRating: rating,
-                              pokemonId: pokemon.id,
-                              comment: '',
-                            );
-                          },
+                        return Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            RatingBar.builder(
+                              initialRating: state.pokemonRating.rating,
+                              minRating: 1,
+                              direction: Axis.horizontal,
+                              allowHalfRating: false,
+                              itemCount: 5,
+                              itemBuilder: (context, _) => const Icon(
+                                Icons.star,
+                                color: Colors.amber,
+                              ),
+                              onRatingUpdate: (rating) async {
+                                await pokemonRatingCubit.savePokemonRating(
+                                  pokemonRating: rating,
+                                  pokemonId: pokemon.id,
+                                  comment: '',
+                                );
+                              },
+                            ),
+                            SizedBox(
+                              height: 50.h,
+                            ),
+                            Text('Comments'),
+                            SizedBox(
+                              height: 20.h,
+                            ),
+                            TextField(
+                              maxLines: 3, //or null
+                              decoration: InputDecoration.collapsed(
+                                  hintText: "Enter your text here"),
+                            ),
+                            ElevatedButton(
+                                onPressed: null, child: Text('Send comment'))
+                          ],
                         );
                       }
                       return const SizedBox.shrink();
