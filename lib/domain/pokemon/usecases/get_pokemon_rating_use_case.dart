@@ -11,6 +11,6 @@ class GetPokemonRatingUseCaseImpl implements GetPokemonRatingUseCase {
   GetPokemonRatingUseCaseImpl({required this.pokemonLocalRepository});
   @override
   Future<PokemonRating> call({required String pokemonId}) async {
-    return await pokemonLocalRepository.get(pokemonId: pokemonId);
+    return await pokemonLocalRepository.getRating(pokemonId: pokemonId);
   }
 }

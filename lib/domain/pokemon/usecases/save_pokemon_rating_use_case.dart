@@ -5,7 +5,6 @@ abstract class SavePokemonRatingUseCase {
   void call({
     required String pokemonId,
     required double pokemonRating,
-    required String comment,
   });
 }
 
@@ -14,13 +13,12 @@ class SavePokemonRatingUseCaseImpl implements SavePokemonRatingUseCase {
 
   SavePokemonRatingUseCaseImpl({required this.pokemonLocalRepository});
   @override
-  Future<void> call(
-      {required String pokemonId,
-      required double pokemonRating,
-      required String comment}) async {
-    pokemonLocalRepository.save(
+  Future<void> call({
+    required String pokemonId,
+    required double pokemonRating,
+  }) async {
+    pokemonLocalRepository.saveRating(
         pokemonRating: PokemonRating(
-      comment: comment,
       id: pokemonId,
       rating: pokemonRating,
     ));

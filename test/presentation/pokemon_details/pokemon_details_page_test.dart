@@ -8,6 +8,7 @@ import 'package:pokemon/domain/pokemon/entities/pokemon_abilities.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
+import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/pokemon_success_widget.dart';
@@ -22,16 +23,21 @@ class MockPokemonAbilitiesCubit extends MockCubit<PokemonAbilitiesState>
 class MockPokemonRatingCubit extends MockCubit<PokemonRatingState>
     implements PokemonRatingCubit {}
 
+class MockPokemonCommentCubit extends MockCubit<PokemonCommentState>
+    implements PokemonCommentCubit {}
+
 void main() {
   late PokemonDetailsCubit pokemonDetailsCubit;
   late PokemonAbilitiesCubit pokemonAbilitiesCubit;
   late PokemonRatingCubit pokemonRatingCubit;
+  late PokemonCommentCubit pokemonCommentCubit;
 
   setUp(
     () {
       pokemonDetailsCubit = MockPokemonDetailsCubit();
       pokemonAbilitiesCubit = MockPokemonAbilitiesCubit();
       pokemonRatingCubit = MockPokemonRatingCubit();
+      pokemonCommentCubit = MockPokemonCommentCubit();
     },
   );
 
@@ -115,6 +121,7 @@ void main() {
                     pokemonAbilitiesCubit: pokemonAbilitiesCubit,
                     pokemonDetailsCubit: pokemonDetailsCubit,
                     pokemonRatingCubit: pokemonRatingCubit,
+                    pokemonCommentCubit: pokemonCommentCubit,
                   ),
                 ),
               ),
@@ -156,6 +163,7 @@ void main() {
                     pokemonAbilitiesCubit: pokemonAbilitiesCubit,
                     pokemonDetailsCubit: pokemonDetailsCubit,
                     pokemonRatingCubit: pokemonRatingCubit,
+                    pokemonCommentCubit: pokemonCommentCubit,
                   ),
                 ),
               ),

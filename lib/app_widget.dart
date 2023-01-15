@@ -6,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/locator.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
+import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/pokemon_details_page.dart';
 import 'package:pokemon/presentation/pokemon_list/pokemon_list_page.dart';
 import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
@@ -51,6 +52,7 @@ class PokemonApp extends StatelessWidget {
                 pokemonAbilitiesCubit: locator.get<PokemonAbilitiesCubit>(),
                 pokemonDetailsCubit: locator.get<PokemonDetailsCubit>(),
                 pokemonRatingCubit: locator.get<PokemonRatingCubit>(),
+                pokemonCommentCubit: locator.get<PokemonCommentCubit>(),
                 pokemon: ModalRoute.of(context)!.settings.arguments as Pokemon,
               ),
         },

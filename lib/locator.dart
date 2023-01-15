@@ -5,8 +5,10 @@ import 'package:pokemon/domain/pokemon/usecases/get_pokemon_abilities_use_case.d
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_rating_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemons_use_case.dart';
+import 'package:pokemon/domain/pokemon/usecases/save_pokemon_comment_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/save_pokemon_rating_use_case.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
+import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
 import 'package:pokemon/presentation/pokemon_list/cubit/pokemon_list_cubit.dart';
 import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
 
@@ -24,6 +26,12 @@ void registerDependencies() {
   locator.registerFactory<GetPokemonsUseCase>(
     () => GetPokemonsUseCaseImp(
       pokemonRepository: locator.get<PokemonRemoteRepository>(),
+    ),
+  );
+
+  locator.registerFactory<SavePokemonCommentsUseCase>(
+    () => SavePokemonCommentUseCaseImpl(
+      pokemonLocalRepository: locator.get<PokemonLocalRepository>(),
     ),
   );
 
@@ -73,6 +81,12 @@ void registerDependencies() {
     () => PokemonRatingCubit(
       getPokemonRatingUseCase: locator.get<GetPokemonRatingUseCase>(),
       savePokemonRatingUseCase: locator.get<SavePokemonRatingUseCase>(),
+    ),
+  );
+
+  locator.registerFactory<PokemonCommentCubit>(
+    () => PokemonCommentCubit(
+      savePokemonCommentsUseCase: locator.get<SavePokemonCommentsUseCase>(),
     ),
   );
 }

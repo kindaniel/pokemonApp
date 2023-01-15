@@ -27,9 +27,10 @@ class PokemonRatingCubit extends Cubit<PokemonRatingState> {
   savePokemonRating({
     required String pokemonId,
     required double pokemonRating,
-    required String comment,
   }) async {
     savePokemonRatingUseCase(
-        comment: comment, pokemonId: pokemonId, pokemonRating: pokemonRating);
+      pokemonId: pokemonId,
+      pokemonRating: pokemonRating,
+    );
   }
 }

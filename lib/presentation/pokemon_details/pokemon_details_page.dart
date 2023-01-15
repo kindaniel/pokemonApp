@@ -4,25 +4,26 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
-import 'package:pokemon/domain/pokemon/entities/pokemon_rating.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
+import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/pokemon_success_widget.dart';
 import 'package:pokemon/presentation/pokemon_details/widgets/sliver_app_bar.dart';
 import 'package:pokemon/presentation/pokemon_rating/cubit/pokemon_rating_cubit.dart';
 
 class PokemonDetailsPage extends StatelessWidget {
-  PokemonDetailsPage({
-    super.key,
-    required this.pokemon,
-    required this.pokemonAbilitiesCubit,
-    required this.pokemonDetailsCubit,
-    required this.pokemonRatingCubit,
-  });
+  PokemonDetailsPage(
+      {super.key,
+      required this.pokemon,
+      required this.pokemonAbilitiesCubit,
+      required this.pokemonDetailsCubit,
+      required this.pokemonRatingCubit,
+      required this.pokemonCommentCubit});
 
   final PokemonAbilitiesCubit pokemonAbilitiesCubit;
   final PokemonDetailsCubit pokemonDetailsCubit;
   final PokemonRatingCubit pokemonRatingCubit;
+  final PokemonCommentCubit pokemonCommentCubit;
   final Pokemon pokemon;
 
   final TextEditingController commentController =
@@ -109,16 +110,14 @@ class PokemonDetailsPage extends StatelessWidget {
                               ),
                               onRatingUpdate: (rating) async {
                                 await pokemonRatingCubit.savePokemonRating(
-                                  pokemonRating: rating,
-                                  pokemonId: pokemon.id,
-                                  comment: '',
-                                );
+                                    pokemonRating: rating,
+                                    pokemonId: pokemon.id);
                               },
                             ),
                             SizedBox(
                               height: 20.h,
                             ),
-                            Text('Comments'),
+                            const Text('Comments'),
                             SizedBox(
                               height: 20.h,
                             ),
@@ -150,8 +149,13 @@ class PokemonDetailsPage extends StatelessWidget {
                               child: Align(
                                 alignment: Alignment.centerRight,
                                 child: ElevatedButton(
-                                  onPressed: () => null,
-                                  child: Text('Send'),
+                                  onPressed: () async {
+                                    pokemonCommentCubit.saveComment(
+                                      pokemonId: pokemon.id,
+                                      comment: commentController.text,
+                                    );
+                                  },
+                                  child: const Text('Send'),
                                 ),
                               ),
                             )
