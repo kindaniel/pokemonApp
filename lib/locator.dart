@@ -2,6 +2,7 @@ import 'package:get_it/get_it.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_local_repository.dart';
 import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_abilities_use_case.dart';
+import 'package:pokemon/domain/pokemon/usecases/get_pokemon_comments_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_rating_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemons_use_case.dart';
@@ -47,6 +48,12 @@ void registerDependencies() {
     ),
   );
 
+  locator.registerFactory<GetPokemonCommentsUseCase>(
+    () => GetPokemonCommentsUseCaseImpl(
+      pokemonLocalRepository: locator.get<PokemonLocalRepository>(),
+    ),
+  );
+
   locator.registerFactory<GetPokemonRatingUseCase>(
     () => GetPokemonRatingUseCaseImpl(
       pokemonLocalRepository: locator.get<PokemonLocalRepository>(),
@@ -87,6 +94,7 @@ void registerDependencies() {
   locator.registerFactory<PokemonCommentCubit>(
     () => PokemonCommentCubit(
       savePokemonCommentsUseCase: locator.get<SavePokemonCommentsUseCase>(),
+      getPokemonCommentsUseCase: locator.get<GetPokemonCommentsUseCase>(),
     ),
   );
 }

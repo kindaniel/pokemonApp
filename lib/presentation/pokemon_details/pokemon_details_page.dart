@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poke_design_system/theme/pokeds_colors.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_comments.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
@@ -49,6 +51,10 @@ class PokemonDetailsPage extends StatelessWidget {
           BlocProvider(
             create: (context) =>
                 pokemonRatingCubit..getPokemonRating(pokemonId: pokemon.id),
+          ),
+          BlocProvider(
+            create: (context) =>
+                pokemonCommentCubit..getComments(pokemonId: pokemon.id),
           ),
         ],
         child: SingleChildScrollView(
@@ -110,8 +116,9 @@ class PokemonDetailsPage extends StatelessWidget {
                               ),
                               onRatingUpdate: (rating) async {
                                 await pokemonRatingCubit.savePokemonRating(
-                                    pokemonRating: rating,
-                                    pokemonId: pokemon.id);
+                                  pokemonRating: rating,
+                                  pokemonId: pokemon.id,
+                                );
                               },
                             ),
                             SizedBox(
@@ -158,7 +165,26 @@ class PokemonDetailsPage extends StatelessWidget {
                                   child: const Text('Send'),
                                 ),
                               ),
-                            )
+                            ),
+                            BlocBuilder<PokemonCommentCubit,
+                                PokemonCommentState>(
+                              builder: (context, state) {
+                                if (state is PokemonCommentSuccess) {
+                                  return Column(
+                                    children: [
+                                      for (var comment in state
+                                          .pokemonComments.comments) ...[
+                                        Container(
+                                          child: Text(comment),
+                                        )
+                                      ]
+                                    ],
+                                  );
+                                } else {
+                                  return const SizedBox.shrink();
+                                }
+                              },
+                            ),
                           ],
                         );
                       }
