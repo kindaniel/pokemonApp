@@ -13,14 +13,14 @@ class PokemonCommentCubit extends Cubit<PokemonCommentState> {
       required this.getPokemonCommentsUseCase})
       : super(PokemonCommentInitial());
 
-  void saveComment({required String pokemonId, required String comment}) async {
+  saveComment({required String pokemonId, required String comment}) async {
     savePokemonCommentsUseCase(
       pokemonId: pokemonId,
       comment: comment,
     );
   }
 
-  void getComments({required String pokemonId}) async {
+  getComments({required String pokemonId}) async {
     emit(PokemonCommentLoading());
     final pokemonComments =
         await getPokemonCommentsUseCase(pokemonId: pokemonId);

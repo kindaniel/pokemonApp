@@ -157,10 +157,13 @@ class PokemonDetailsPage extends StatelessWidget {
                                 alignment: Alignment.centerRight,
                                 child: ElevatedButton(
                                   onPressed: () async {
-                                    pokemonCommentCubit.saveComment(
+                                    await pokemonCommentCubit.saveComment(
                                       pokemonId: pokemon.id,
                                       comment: commentController.text,
                                     );
+
+                                    await pokemonCommentCubit.getComments(
+                                        pokemonId: pokemon.id);
                                   },
                                   child: const Text('Send'),
                                 ),
@@ -175,7 +178,25 @@ class PokemonDetailsPage extends StatelessWidget {
                                       for (var comment in state
                                           .pokemonComments.comments) ...[
                                         Container(
-                                          child: Text(comment),
+                                          margin: EdgeInsets.all(10),
+                                          decoration: BoxDecoration(
+                                            color: PokedsColors.primaryColor,
+                                            borderRadius: BorderRadius.all(
+                                              Radius.circular(10.r),
+                                            ),
+                                          ),
+                                          child: ListTile(
+                                            title: Text(
+                                              comment,
+                                              style: const TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                            leading: const Icon(
+                                              Icons.message,
+                                              color: Colors.white,
+                                            ),
+                                          ),
                                         )
                                       ]
                                     ],
