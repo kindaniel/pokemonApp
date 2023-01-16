@@ -5,8 +5,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lottie/lottie.dart';
 import 'package:network_image_mock/network_image_mock.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_abilities.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_comments.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
+import 'package:pokemon/domain/pokemon/entities/pokemon_rating.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
 import 'package:pokemon/presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
@@ -105,6 +107,21 @@ void main() {
           ),
         ),
       );
+      whenListen(
+          pokemonRatingCubit,
+          Stream<PokemonRatingState>.fromIterable(
+            [],
+          ),
+          initialState: PokemonRatingSuccess(
+              pokemonRating: PokemonRating(id: '25', rating: 3.0)));
+      whenListen(
+          pokemonCommentCubit,
+          Stream<PokemonCommentState>.fromIterable(
+            [],
+          ),
+          initialState: PokemonCommentSuccess(
+              pokemonComments:
+                  PokemonComments(comments: ['', '', ''], id: '25')));
 
       await mockNetworkImagesFor(() => widgetTester.pumpWidget(
             MaterialApp(
@@ -147,6 +164,21 @@ void main() {
             [],
           ),
           initialState: PokemonDetailsError());
+      whenListen(
+          pokemonRatingCubit,
+          Stream<PokemonRatingState>.fromIterable(
+            [],
+          ),
+          initialState: PokemonRatingSuccess(
+              pokemonRating: PokemonRating(id: '25', rating: 3.0)));
+      whenListen(
+          pokemonCommentCubit,
+          Stream<PokemonCommentState>.fromIterable(
+            [],
+          ),
+          initialState: PokemonCommentSuccess(
+              pokemonComments:
+                  PokemonComments(comments: ['', '', ''], id: '25')));
 
       await mockNetworkImagesFor(() => widgetTester.pumpWidget(
             MaterialApp(
