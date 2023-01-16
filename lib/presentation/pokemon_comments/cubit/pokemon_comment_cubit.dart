@@ -14,20 +14,28 @@ class PokemonCommentCubit extends Cubit<PokemonCommentState> {
       : super(PokemonCommentInitial());
 
   saveComment({required String pokemonId, required String comment}) async {
-    savePokemonCommentsUseCase(
-      pokemonId: pokemonId,
-      comment: comment,
-    );
+    try {
+      savePokemonCommentsUseCase(
+        pokemonId: pokemonId,
+        comment: comment,
+      );
+    } catch (error) {
+      emit(PokemonCommentError());
+    }
   }
 
   getComments({required String pokemonId}) async {
-    emit(PokemonCommentLoading());
-    final pokemonComments =
-        await getPokemonCommentsUseCase(pokemonId: pokemonId);
-    if (pokemonComments.comments.isEmpty) {
-      emit(PokemonCommentsEmpty());
-      return;
+    try {
+      emit(PokemonCommentLoading());
+      final pokemonComments =
+          await getPokemonCommentsUseCase(pokemonId: pokemonId);
+      if (pokemonComments.comments.isEmpty) {
+        emit(PokemonCommentsEmpty());
+        return;
+      }
+      emit(PokemonCommentSuccess(pokemonComments: pokemonComments));
+    } catch (error) {
+      emit(PokemonCommentError());
     }
-    emit(PokemonCommentSuccess(pokemonComments: pokemonComments));
   }
 }
