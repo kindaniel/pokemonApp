@@ -30,6 +30,8 @@ class PokemonDetailsPage extends StatelessWidget {
   final TextEditingController commentController =
       TextEditingController(text: "");
 
+  final formKey = GlobalKey<FormState>();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -97,26 +99,29 @@ class PokemonDetailsPage extends StatelessWidget {
                 SizedBox(
                   height: 20.h,
                 ),
-                TextFormField(
-                  controller: commentController,
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return 'Comment anything';
-                    }
-                    return null;
-                  },
-                  decoration: InputDecoration(
-                    filled: true,
-                    fillColor: const Color(0xffF3F4F5),
-                    border: OutlineInputBorder(
-                      borderRadius: BorderRadius.circular(8),
-                      borderSide: BorderSide.none,
-                    ),
-                    errorMaxLines: 6,
-                    hintText: 'comment',
-                    prefixIcon: Icon(
-                      Icons.comment,
-                      size: 15.r,
+                Form(
+                  key: formKey,
+                  child: TextFormField(
+                    controller: commentController,
+                    validator: (value) {
+                      if (value != null && value.isEmpty || value!.length < 3) {
+                        return 'Comment anything more than 3 characters';
+                      }
+                      return null;
+                    },
+                    decoration: InputDecoration(
+                      filled: true,
+                      fillColor: const Color(0xffF3F4F5),
+                      border: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(8),
+                        borderSide: BorderSide.none,
+                      ),
+                      errorMaxLines: 6,
+                      hintText: 'comment',
+                      prefixIcon: Icon(
+                        Icons.comment,
+                        size: 15.r,
+                      ),
                     ),
                   ),
                 ),
@@ -126,13 +131,16 @@ class PokemonDetailsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        await pokemonCommentCubit.saveComment(
-                          pokemonId: pokemon.id,
-                          comment: commentController.text,
-                        );
+                        if (formKey.currentState != null &&
+                            formKey.currentState!.validate()) {
+                          await pokemonCommentCubit.saveComment(
+                            pokemonId: pokemon.id,
+                            comment: commentController.text,
+                          );
 
-                        await pokemonCommentCubit.getComments(
-                            pokemonId: pokemon.id);
+                          await pokemonCommentCubit.getComments(
+                              pokemonId: pokemon.id);
+                        }
                       },
                       child: const Text('Send'),
                     ),
