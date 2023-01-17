@@ -131,8 +131,7 @@ class PokemonDetailsPage extends StatelessWidget {
                     padding: const EdgeInsets.all(8.0),
                     child: ElevatedButton(
                       onPressed: () async {
-                        if (formKey.currentState != null &&
-                            formKey.currentState!.validate()) {
+                        if (formKey.currentState!.validate()) {
                           await pokemonCommentCubit.saveComment(
                             pokemonId: pokemon.id,
                             comment: commentController.text,
