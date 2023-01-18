@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lottie/lottie.dart';
+import 'package:poke_design_system/widgets/poke_input.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/presentation/pokemon_abilities/cubit/pokemon_abilities_cubit.dart';
 import 'package:pokemon/presentation/pokemon_comments/cubit/pokemon_comment_cubit.dart';
@@ -31,6 +32,13 @@ class PokemonDetailsPage extends StatelessWidget {
       TextEditingController(text: "");
 
   final formKey = GlobalKey<FormState>();
+
+  String Function(String)? _validateField(value) {
+    if (value != null && value.isEmpty || value!.length < 3) {
+      return value;
+    }
+    return null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,28 +109,14 @@ class PokemonDetailsPage extends StatelessWidget {
                 ),
                 Form(
                   key: formKey,
-                  child: TextFormField(
+                  child: InputWidget(
                     controller: commentController,
-                    validator: (value) {
+                    validator: ((value) {
                       if (value != null && value.isEmpty || value!.length < 3) {
-                        return 'Comment anything more than 3 characters';
+                        return 'informe ao menos 3 caracteres';
                       }
-                      return null;
-                    },
-                    decoration: InputDecoration(
-                      filled: true,
-                      fillColor: const Color(0xffF3F4F5),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(8),
-                        borderSide: BorderSide.none,
-                      ),
-                      errorMaxLines: 6,
-                      hintText: 'comment',
-                      prefixIcon: Icon(
-                        Icons.comment,
-                        size: 15.r,
-                      ),
-                    ),
+                    }),
+                    hintText: 'comment',
                   ),
                 ),
                 Align(
