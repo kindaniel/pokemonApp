@@ -115,6 +115,7 @@ class PokemonDetailsPage extends StatelessWidget {
                       if (value != null && value.isEmpty || value!.length < 3) {
                         return 'informe ao menos 3 caracteres';
                       }
+                      return null;
                     }),
                     hintText: 'comment',
                   ),
@@ -143,7 +144,8 @@ class PokemonDetailsPage extends StatelessWidget {
                   builder: (context, state) {
                     if (state is PokemonCommentSuccess) {
                       return CommentsWidget(
-                          pokemonComments: state.pokemonComments);
+                        pokemonComments: state.pokemonComments,
+                      );
                     } else {
                       return const SizedBox.shrink();
                     }
