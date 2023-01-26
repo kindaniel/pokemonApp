@@ -2,19 +2,18 @@ import 'package:hive/hive.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_comments.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_rating.dart';
 import 'package:pokemon/settings/app_constants.dart';
-import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
 // ignore: constant_identifier_names
 const COMMENT_IDENTIFIER = 'comments';
 
-abstract class PokemonLocalRepository {
+abstract class PokemonLocalDataSource {
   void saveRating({required PokemonRating pokemonRating});
   Future<PokemonRating> getRating({required String pokemonId});
   Future<PokemonComments> getComments({required String pokemonId});
   void saveComment({required String pokemonId, required String comment});
 }
 
-class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
+class PokemonLocalDataSourceImpl implements PokemonLocalDataSource {
   var box = Hive.box(AppConstants.ratingHiveBoxName);
   @override
   Future<PokemonRating> getRating({required String pokemonId}) async {
@@ -26,7 +25,7 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
       }
       return PokemonRating(id: pokemonId, rating: rating['rating']);
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
   }
 
@@ -40,7 +39,7 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
         },
       );
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
   }
 
@@ -56,7 +55,7 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
         },
       );
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
   }
 
@@ -72,7 +71,7 @@ class PokemonLocalRepositoryImpl implements PokemonLocalRepository {
       }
       return PokemonComments(id: pokemonId, comments: comments['comments']);
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
   }
 }

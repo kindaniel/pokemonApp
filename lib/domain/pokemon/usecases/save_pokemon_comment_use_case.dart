@@ -1,4 +1,4 @@
-import 'package:pokemon/data/pokemon/repositories/pokemon_local_repository.dart';
+import 'package:pokemon/domain/pokemon/repositories/pokemon_repository.dart';
 
 abstract class SavePokemonCommentsUseCase {
   void call({

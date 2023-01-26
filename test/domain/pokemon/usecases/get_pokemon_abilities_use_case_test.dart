@@ -1,6 +1,6 @@
 import 'package:flutter_test/flutter_test.dart';
 import 'package:mocktail/mocktail.dart';
-import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
+import 'package:pokemon/domain/pokemon/repositories/pokemon_repository.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_abilities.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_abilities_use_case.dart';
 

@@ -1,6 +1,9 @@
 import 'package:get_it/get_it.dart';
-import 'package:pokemon/data/pokemon/repositories/pokemon_local_repository.dart';
-import 'package:pokemon/data/pokemon/repositories/pokemon_remote_repository.dart';
+import 'package:pokemon/domain/pokemon/repositories/pokemon_repository.dart';
+import 'package:pokemon/external/datasources/pokemon_local_datasource.dart';
+import 'package:pokemon/external/datasources/pokemon_remote_datasource.dart';
+import 'package:pokemon/infra/repositories/pokemon_local_repository.dart';
+import 'package:pokemon/infra/repositories/pokemon_remote_repository.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_abilities_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_comments_use_case.dart';
 import 'package:pokemon/domain/pokemon/usecases/get_pokemon_detail_use_case.dart';
@@ -18,11 +21,20 @@ import 'presentation/pokemon_details/cubit/pokemon_detail_cubit.dart';
 final locator = GetIt.instance;
 
 void registerDependencies() {
-  locator
-      .registerFactory<PokemonRemoteRepository>(() => PokemonRepositoryImpl());
+  locator.registerFactory<PokemonLocalDataSource>(
+      () => PokemonLocalDataSourceImpl());
 
-  locator.registerFactory<PokemonLocalRepository>(
-      () => PokemonLocalRepositoryImpl());
+  locator.registerFactory<PokemonRemoteDataSource>(
+      () => PokemonRemoteDataSourceImpl());
+
+  locator.registerFactory<PokemonRemoteRepository>(() => PokemonRepositoryImpl(
+        pokemonRemoteDataSource: locator.get<PokemonRemoteDataSource>(),
+      ));
+
+  locator
+      .registerFactory<PokemonLocalRepository>(() => PokemonLocalRepositoryImpl(
+            pokemonLocalDataSource: locator.get<PokemonLocalDataSource>(),
+          ));
 
   locator.registerFactory<GetPokemonsUseCase>(
     () => GetPokemonsUseCaseImp(
