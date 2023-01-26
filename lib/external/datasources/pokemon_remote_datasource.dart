@@ -4,15 +4,14 @@ import 'package:pokemon/domain/pokemon/entities/pokemon_abilities.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_details.dart';
 import 'package:pokemon/domain/pokemon/entities/pokemon_list.dart';
 import 'package:pokemon/settings/app_constants.dart';
-import 'package:pokemon/shared/exceptions/app_error_exception.dart';
 
-abstract class PokemonRemoteRepository {
+abstract class PokemonRemoteDataSource {
   Future<PokemonList?> getPokemons({PokemonList? currentPokemonList});
   Future<PokemonDetails?> getPokemonDetails({required String pokemonId});
   Future<PokemonAbilities?> getPokemonAbilities({required String pokemonId});
 }
 
-class PokemonRepositoryImpl implements PokemonRemoteRepository {
+class PokemonRemoteDataSourceImpl implements PokemonRemoteDataSource {
   var dio = Dio();
 
   @override
@@ -29,7 +28,7 @@ class PokemonRepositoryImpl implements PokemonRemoteRepository {
         return pokemonList;
       }
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
     return null;
   }
@@ -45,7 +44,7 @@ class PokemonRepositoryImpl implements PokemonRemoteRepository {
         return pokemonDetails;
       }
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
     return null;
   }
@@ -62,7 +61,7 @@ class PokemonRepositoryImpl implements PokemonRemoteRepository {
         return pokemonAbilities;
       }
     } catch (error) {
-      throw AppErrorException();
+      rethrow;
     }
     return null;
   }
